@@ -1,4 +1,7 @@
 ﻿using System;
+using SFML.Graphics;
+using SFML.System;
+using SFML.Window;
 
 namespace Breakout
 {
@@ -6,7 +9,22 @@ namespace Breakout
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            using (var window = new RenderWindow(new VideoMode(500,700), "Breakout"))
+            {
+                window.Closed += (o,e) => window.Close();
+
+                Clock clock = new Clock();
+                while (window.IsOpen)
+                {
+                    float deltatime = clock.Restart().AsSeconds();
+
+                    window.DispatchEvents();
+
+                    window.Clear(new Color(131, 197, 235));
+
+                    window.Display();
+                }
+            }
         }
     }
 }
