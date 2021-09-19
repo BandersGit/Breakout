@@ -46,6 +46,12 @@ namespace Breakout
                 newPos.X = 0 + size.X/2;
             }
 
+            if (Collision.CircleRectangle(ball.sprite.Position, Ball.Radius, this.sprite.Position, size, out Vector2f hit))
+            {
+                ball.sprite.Position += hit;
+                ball.Reflect(hit.Normalized());
+            }
+
             sprite.Position= newPos;
         }
 

@@ -19,21 +19,30 @@ namespace Breakout
                 Clock clock = new Clock();
                 Ball ball = new Ball();
                 Paddle paddle = new Paddle();
+                Tile tile = new Tile();
 
                 while (window.IsOpen)
                 {
+                    if (ball.health <= 0)
+                    {
+                        clock = new Clock();
+                        ball = new Ball();
+                        paddle = new Paddle();
+                    }
                     float deltaTime = clock.Restart().AsSeconds();
 
                     window.DispatchEvents();
 
                     ball.Update(deltaTime);
                     paddle.Update(ball, deltaTime);
+                    tile.Update(ball, deltaTime);
+                    
 
                     window.Clear(new Color(131, 197, 235));
 
                     ball.Draw(window);
                     paddle.Draw(window);
-
+                    tile.Draw(window);
                     window.Display();
                 }
             }

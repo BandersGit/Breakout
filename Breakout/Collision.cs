@@ -20,7 +20,7 @@
 using System;
 using SFML.System;
 
-namespace breakout {
+namespace Breakout {
     
     /// <summary>
     /// Lightweight collision/intersection library for SFML. Not overly
