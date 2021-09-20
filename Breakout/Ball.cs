@@ -10,6 +10,7 @@ namespace Breakout
 
         public int health;
         public int score;
+        public int tilesHit;
         public Text gui;
 
 
@@ -63,6 +64,7 @@ namespace Breakout
                 newPos.Y = Program.ScreenH - Radius;
 
                 health --;
+                tilesHit = 0;
                 sprite.Position = new Vector2f(250, 350);
 
                 if (new Random().Next() % 2 == 0)

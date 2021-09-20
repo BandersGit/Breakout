@@ -14,7 +14,7 @@ namespace Breakout
         {
             sprite = new Sprite();
             sprite.Texture = new Texture("assets/paddle.png");
-            
+
             Vector2f paddleTextureSize = (Vector2f) sprite.Texture.Size;
             sprite.Origin = 0.5f * paddleTextureSize;
             sprite.Scale = new Vector2f(paddleTextureSize.Y / paddleTextureSize.X ,paddleTextureSize.Y / paddleTextureSize.X);
@@ -46,6 +46,7 @@ namespace Breakout
 
             if (Collision.CircleRectangle(ball.sprite.Position, Ball.Radius, this.sprite.Position, size, out Vector2f hit))
             {
+                ball.tilesHit = 0;
                 ball.sprite.Position += hit;
                 ball.Reflect(hit.Normalized());
             }
