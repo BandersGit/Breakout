@@ -23,20 +23,20 @@ namespace Breakout
 
                 while (window.IsOpen)
                 {
-                    if (ball.health <= 0)
+                    if (ball.health <= 0 || tile.positions.Count == 0)
                     {
                         clock = new Clock();
                         ball = new Ball();
                         paddle = new Paddle();
+                        tile.positions.Clear();
+                        tile = new Tile();
                     }
                     float deltaTime = clock.Restart().AsSeconds();
-
                     window.DispatchEvents();
 
                     ball.Update(deltaTime);
                     paddle.Update(ball, deltaTime);
                     tile.Update(ball, deltaTime);
-                    
 
                     window.Clear(new Color(131, 197, 235));
 

@@ -27,7 +27,7 @@ namespace Breakout
             sprite.Origin = 0.5f * ballTextureSize;
             sprite.Scale = new Vector2f(Diameter / ballTextureSize.X, Diameter / ballTextureSize.Y);
             
-            sprite.Position = new Vector2f(250, 400);
+            sprite.Position = new Vector2f(250, 350);
 
             health = 3;
             score = 0;
@@ -45,7 +45,7 @@ namespace Breakout
         public void Update(float deltaTime)
         {
             var newPos = sprite.Position;
-            newPos += direction * deltaTime * 200.0f;
+            newPos += direction * deltaTime * 250.0f;
             sprite.Position = newPos; //WHYYYYYYYY!!!!!!?????????
 
             if (newPos.X > Program.ScreenW - Radius)
@@ -63,7 +63,7 @@ namespace Breakout
                 newPos.Y = Program.ScreenH - Radius;
 
                 health --;
-                sprite.Position = new Vector2f(250, 400);
+                sprite.Position = new Vector2f(250, 350);
 
                 if (new Random().Next() % 2 == 0)
                 {
