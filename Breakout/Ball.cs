@@ -46,8 +46,8 @@ namespace Breakout
         public void Update(float deltaTime)
         {
             var newPos = sprite.Position;
-            newPos += direction * deltaTime * 250.0f;
-            sprite.Position = newPos; //WHYYYYYYYY!!!!!!?????????
+            newPos += direction * deltaTime * 350.0f;
+            sprite.Position = newPos;
 
             if (newPos.X > Program.ScreenW - Radius)
             {

@@ -51,7 +51,7 @@ namespace Breakout
                 ball.Reflect(hit.Normalized());
             }
 
-            sprite.Position= newPos;
+            sprite.Position = newPos;
         }
 
         public void Draw(RenderTarget target)

@@ -20,7 +20,6 @@ namespace Breakout
             Vector2f tileTextureSize = (Vector2f) sprite.Texture.Size;
             sprite.Origin = 0.5f * tileTextureSize;
             sprite.Scale = new Vector2f((tileTextureSize.Y / tileTextureSize.X), (tileTextureSize.Y / tileTextureSize.X));
-            sprite.Position = new Vector2f(Program.ScreenW * 0.5f, Program.ScreenH - 400);
             size = new Vector2f(sprite.GetGlobalBounds().Width,sprite.GetGlobalBounds().Height);
             
             positions = new List<Vector2f>();
