@@ -41,10 +41,10 @@ namespace Breakout
                 if (Collision.CircleRectangle(ball.sprite.Position, Ball.Radius, pos, size, out Vector2f hit))
                 {
                     ball.sprite.Position += hit;
-                    ball.tilesHit ++;
+                    ball.tileHitStreak ++;
                     ball.Reflect(hit.Normalized());
                     positions.RemoveAt(i);
-                    ball.score += 100 * ball.tilesHit;
+                    ball.score += 100 * ball.tileHitStreak;
                     i = 0;
                 }
             }

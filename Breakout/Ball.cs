@@ -10,7 +10,8 @@ namespace Breakout
 
         public int health;
         public int score;
-        public int tilesHit;
+        public int tileHitStreak;
+        public bool isBallOnPaddle;
         public Text gui;
 
 
@@ -32,6 +33,7 @@ namespace Breakout
 
             health = 3;
             score = 0;
+            isBallOnPaddle = true;
 
             gui = new Text();
             gui.CharacterSize = 24;
@@ -45,41 +47,47 @@ namespace Breakout
 
         public void Update(float deltaTime)
         {
-            var newPos = sprite.Position;
-            newPos += direction * deltaTime * 350.0f;
-            sprite.Position = newPos;
-
-            if (newPos.X > Program.ScreenW - Radius)
+            if (!isBallOnPaddle)
             {
-                newPos.X = Program.ScreenW - Radius;
-                Reflect(new Vector2f(-1, 0));
+                var newPos = sprite.Position;
+                newPos += direction * deltaTime * 350.0f;
+                sprite.Position = newPos;
 
-            }else if (newPos.X < 0 + Radius)
-            {
-                newPos.X = 0 + Radius;
-                Reflect(new Vector2f(1, 0));
-
-            }else if (newPos.Y > Program.ScreenH - Radius)
-            {
-                newPos.Y = Program.ScreenH - Radius;
-
-                health --;
-                tilesHit = 0;
-                sprite.Position = new Vector2f(250, 350);
-
-                if (new Random().Next() % 2 == 0)
+                if (newPos.X > Program.ScreenW - Radius)
                 {
-                    direction = new Vector2f(1, 1) / MathF.Sqrt(2.0f);
-                }
-                else
-                {
-                    direction = new Vector2f(-1, 1) / MathF.Sqrt(2.0f);
+                    newPos.X = Program.ScreenW - Radius;
+                    Reflect(new Vector2f(-1, 0));
 
+                }else if (newPos.X < 0 + Radius)
+                {
+                    newPos.X = 0 + Radius;
+                    Reflect(new Vector2f(1, 0));
+
+                }else if (newPos.Y > Program.ScreenH - Radius)
+                {
+                    newPos.Y = Program.ScreenH - Radius;
+
+                    health --;
+                    tileHitStreak = 0;
+                    sprite.Position = new Vector2f(250, 350);
+
+                    if (new Random().Next() % 2 == 0)
+                    {
+                        direction = new Vector2f(1, 1) / MathF.Sqrt(2.0f);
+                    }
+                    else
+                    {
+                        direction = new Vector2f(-1, 1) / MathF.Sqrt(2.0f);
+
+                    }
+
+                    isBallOnPaddle = true;
+
+                }else if (newPos.Y < 0 - Radius)
+                {
+                    newPos.Y = 0 - Radius;
+                    Reflect(new Vector2f(0, 1));
                 }
-            }else if (newPos.Y < 0 - Radius)
-            {
-                newPos.Y = 0 - Radius;
-                Reflect(new Vector2f(0, 1));
             }
         }
 

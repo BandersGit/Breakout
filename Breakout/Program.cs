@@ -31,6 +31,7 @@ namespace Breakout
                         tile.positions.Clear();
                         tile = new Tile();
                     }
+
                     float deltaTime = clock.Restart().AsSeconds();
                     window.DispatchEvents();
 

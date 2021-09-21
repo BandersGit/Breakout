@@ -24,6 +24,12 @@ namespace Breakout
 
         public void Update(Ball ball, float deltaTime)
         {
+            if (ball.isBallOnPaddle)
+            {
+                Vector2f temporaryPos = sprite.Position;
+                temporaryPos.Y -= 20;
+                ball.sprite.Position = temporaryPos;
+            }
             var newPos = sprite.Position;
             if (Keyboard.IsKeyPressed(Keyboard.Key.Right))
             {
@@ -33,6 +39,11 @@ namespace Breakout
             if (Keyboard.IsKeyPressed(Keyboard.Key.Left))
             {
                 newPos.X -= deltaTime * 300.0f; 
+            }
+
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Space))
+            {
+                ball.isBallOnPaddle = false;
             }
             
             if (newPos.X > Program.ScreenW - size.X/2)  //Why does dividing by 2 work? If you dont know just use 70px
@@ -46,7 +57,7 @@ namespace Breakout
 
             if (Collision.CircleRectangle(ball.sprite.Position, Ball.Radius, this.sprite.Position, size, out Vector2f hit))
             {
-                ball.tilesHit = 0;
+                ball.tileHitStreak = 0;
                 ball.sprite.Position += hit;
                 ball.Reflect(hit.Normalized());
             }
