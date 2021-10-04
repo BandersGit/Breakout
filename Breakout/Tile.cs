@@ -21,9 +21,9 @@ namespace Breakout
             sprite.Origin = 0.5f * tileTextureSize;
             sprite.Scale = new Vector2f((tileTextureSize.Y / tileTextureSize.X), (tileTextureSize.Y / tileTextureSize.X));
             size = new Vector2f(sprite.GetGlobalBounds().Width,sprite.GetGlobalBounds().Height);
-            
             positions = new List<Vector2f>();
-            for (int i = -2; i <= 2; i++)
+
+            for (int i = -2; i <= 2; i++) //Loop that places the tiles with different positions
             {
                 for (int j = -2; j <= 2; j++)
                 {
@@ -35,7 +35,7 @@ namespace Breakout
 
         public void Update(Ball ball, float deltaTime)
         {
-            for (int i = 0; i < positions.Count; i++)
+            for (int i = 0; i < positions.Count; i++) //Checks all the tiles for collisions
             {
                 var pos = positions[i];
                 if (Collision.CircleRectangle(ball.sprite.Position, Ball.Radius, pos, size, out Vector2f hit))

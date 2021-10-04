@@ -47,7 +47,7 @@ namespace Breakout
 
         public void Update(float deltaTime)
         {
-            if (!isBallOnPaddle)
+            if (!isBallOnPaddle) //Behavior when paddle is not on the paddle(reset)
             {
                 var newPos = sprite.Position;
                 newPos += direction * deltaTime * 350.0f;

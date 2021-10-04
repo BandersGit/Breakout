@@ -24,13 +24,15 @@ namespace Breakout
 
         public void Update(Ball ball, float deltaTime)
         {
-            if (ball.isBallOnPaddle)
+            if (ball.isBallOnPaddle) //Gets the ball to stay on the paddle when reset
             {
                 Vector2f temporaryPos = sprite.Position;
                 temporaryPos.Y -= 20;
                 ball.sprite.Position = temporaryPos;
             }
+
             var newPos = sprite.Position;
+            
             if (Keyboard.IsKeyPressed(Keyboard.Key.Right))
             {
                 newPos.X += deltaTime * 300.0f;
@@ -46,13 +48,13 @@ namespace Breakout
                 ball.isBallOnPaddle = false;
             }
             
-            if (newPos.X > Program.ScreenW - size.X/2)  //Why does dividing by 2 work? If you dont know just use 70px
+            if (newPos.X > Program.ScreenW - size.X / 2)
             {
-                newPos.X = Program.ScreenW - size.X/2;
+                newPos.X = Program.ScreenW - size.X / 2;
 
-            }else if (newPos.X < 0 + size.X/2)
+            }else if (newPos.X < 0 + size.X / 2)
             {
-                newPos.X = 0 + size.X/2;
+                newPos.X = 0 + size.X / 2;
             }
 
             if (Collision.CircleRectangle(ball.sprite.Position, Ball.Radius, this.sprite.Position, size, out Vector2f hit))

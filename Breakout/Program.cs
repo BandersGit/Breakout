@@ -23,7 +23,7 @@ namespace Breakout
 
                 while (window.IsOpen)
                 {
-                    if (ball.health <= 0 || tile.positions.Count == 0)
+                    if (ball.health <= 0 || tile.positions.Count == 0)  //Resets the game if player dies or wins
                     {
                         clock = new Clock();
                         ball = new Ball();
